@@ -1,0 +1,76 @@
+{
+  "name": "genpark-agentic-commerce-counterfeit-packaging-ocr-verifier-skill",
+  "title": "Counterfeit Packaging OCR & Serial Authenticity Verifier Skill",
+  "version": "1.0.0",
+  "description": "Luxury goods, pharmaceuticals, and consumer electronics anti-counterfeit verification, packaging typography anomaly detection, tamper-evident seal audit, and batch serial validation. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "organization": {
+    "name": "GenPark Inc.",
+    "url": "https://www.genpark.ai",
+    "linkedin": "https://www.linkedin.com/company/92955550"
+  },
+  "mcp_version": "2024-11-05",
+  "category": "agentic-commerce",
+  "tools": [
+    {
+      "name": "audit_packaging_serial_integrity",
+      "description": "Validate optical character recognition (OCR) serial formatting, check-digit checksum (Luhn/Mod97), and brand packaging micro-print consistency.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "brand_name": {
+            "type": "string"
+          },
+          "extracted_serial_code": {
+            "type": "string"
+          },
+          "font_kerning_variance_score": {
+            "type": "number",
+            "description": "0.0 (identical) to 1.0 (severe drift)"
+          },
+          "hologram_security_thread_present": {
+            "type": "boolean"
+          },
+          "qr_digital_signature_valid": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "brand_name",
+          "extracted_serial_code",
+          "font_kerning_variance_score",
+          "hologram_security_thread_present"
+        ]
+      }
+    },
+    {
+      "name": "generate_authenticity_certificate_or_dossier",
+      "description": "Generate cryptographic authenticity pass token or counterfeit evidence report for chargeback claims.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "inspection_id": {
+            "type": "string"
+          },
+          "is_authentic": {
+            "type": "boolean"
+          },
+          "authenticity_confidence_pct": {
+            "type": "number"
+          },
+          "flagged_irregularities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "inspection_id",
+          "is_authentic",
+          "authenticity_confidence_pct"
+        ]
+      }
+    }
+  ]
+}
